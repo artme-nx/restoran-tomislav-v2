@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Restoran Tomislav · Vodice — Svjetlost Jadrana na tanjuru</title>
+<meta name="description" content="Restoran Tomislav, Vodice — vedra mediteranska kuhinja, svježa riba i dalmatinska tradicija uz more. Rezervirajte stol uz pogled na Jadran." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ivory:#F6F0E6; --sand:#EDE3D2; --ink:#2A2620; --muted:#6F6557;
+    --sea:#1E5B6E; --sea-deep:#143E4B; --gold:#B0853C; --gold-soft:#C99B4E;
+    --line:rgba(42,38,32,.14);
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  .goldline{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);width:100%;opacity:.55}
+  .goldline-s{width:60px;height:1px;background:var(--gold)}
+
+  /* Header */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;padding:24px 0;transition:all .4s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(246,240,230,.9);backdrop-filter:blur(12px);border-color:var(--line);padding:15px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--serif);font-size:1.5rem;letter-spacing:.01em;display:flex;align-items:center;gap:10px}
+  .brand .seal{width:30px;height:30px;color:var(--sea)}
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links a{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+  .nav-links a:hover{color:var(--sea)}
+  .btn-res{font-family:var(--sans);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;background:var(--sea);
+    color:var(--ivory);padding:13px 24px;border:none;border-radius:40px;cursor:pointer;transition:all .35s}
+  .btn-res:hover{background:var(--sea-deep)}
+  .nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:1.6rem;cursor:pointer}
+
+  /* Hero — editorial split */
+  .hero{padding-top:120px;min-height:100vh;display:flex;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;width:100%}
+  .hero-copy .eyebrow{display:block;margin-bottom:22px}
+  .hero-copy h1{font-size:clamp(3rem,6.6vw,5.6rem);font-weight:500;margin-bottom:28px}
+  .hero-copy h1 em{font-style:italic;color:var(--sea)}
+  .hero-copy p{font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--muted);max-width:480px;margin-bottom:36px}
+  .hero-cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .hero-ghost{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:4px}
+  .hero-media{position:relative}
+  .hero-media .clip{overflow:hidden;border-radius:4px}
+  .hero-media img{width:100%;height:600px;object-fit:cover;transform:scale(1.2);will-change:transform}
+  .hero-media .badge{position:absolute;bottom:-26px;left:-26px;background:var(--ivory);padding:22px 26px;border-radius:4px;
+    box-shadow:0 18px 50px rgba(20,62,75,.16);border:1px solid var(--line)}
+  .hero-media .badge b{font-family:var(--serif);font-size:2.4rem;color:var(--sea);display:block;line-height:1}
+  .hero-media .badge small{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* Sections */
+  .pad{padding:130px 0}
+  .reveal{opacity:0;transform:translateY(36px)}
+  .clipwrap{overflow:hidden;border-radius:4px}
+  .clipimg{clip-path:inset(0 0 100% 0)}
+  .sec-head{max-width:680px;margin-bottom:60px}
+  .sec-head .eyebrow{display:block;margin-bottom:18px}
+  h2.big{font-size:clamp(2.2rem,5vw,3.7rem);font-weight:500}
+  h2.big em{font-style:italic;color:var(--sea)}
+
+  /* Stats count-up */
+  .stats{background:var(--sand)}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
+  .stat b{font-family:var(--serif);font-size:clamp(3rem,6vw,4.6rem);color:var(--sea);display:block;line-height:1;font-weight:500}
+  .stat small{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:12px;display:block}
+  .stat:not(:last-child){border-right:1px solid var(--line)}
+
+  /* Story */
+  .story-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:center}
+  .story-grid .clipwrap img{width:100%;height:540px;object-fit:cover}
+  .story-text .eyebrow{display:block;margin-bottom:18px}
+  .story-text p{color:var(--muted);margin:22px 0;font-size:1.04rem}
+  .story-text p.lead{font-family:var(--serif);font-style:italic;font-size:1.55rem;color:var(--ink);line-height:1.4}
+
+  /* Menu */
+  .menu{background:var(--sand)}
+  .menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px 80px}
+  .menu-cat h3{font-size:1.6rem;color:var(--sea);margin-bottom:10px;font-style:italic}
+  .menu-cat .gl{margin-bottom:26px}
+  .dish{margin-bottom:24px;padding-bottom:24px;border-bottom:1px dashed var(--line)}
+  .dish:last-child{border-bottom:none}
+  .dish .d-name{font-family:var(--serif);font-size:1.28rem;color:var(--ink);font-weight:500}
+  .dish .d-desc{font-size:.92rem;color:var(--muted);margin-top:4px;max-width:44ch}
+  .menu-note{text-align:center;margin-top:60px;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--muted)}
+
+  /* Draggable gallery */
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+  .gal-drag{cursor:grab;overflow:hidden}
+  .gal-track{display:flex;gap:22px;will-change:transform}
+  .gal-track figure{flex:0 0 clamp(280px,38vw,460px);overflow:hidden;border-radius:4px}
+  .gal-track img{width:100%;height:340px;object-fit:cover;pointer-events:none}
+  .drag-hint{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* Visit */
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}
+  .visit-info .eyebrow{display:block;margin-bottom:18px}
+  .info-block{margin-bottom:30px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+  .info-block .lbl{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .info-block h3{font-size:1.4rem;color:var(--ink)}
+  .info-block p{color:var(--muted)}
+  .hours-row{display:flex;justify-content:space-between;max-width:340px;color:var(--muted);padding:5px 0}
+  .hours-row b{color:var(--ink);font-weight:500}
+  .map-frame{border-radius:4px;overflow:hidden;min-height:440px;box-shadow:0 14px 40px rgba(20,62,75,.12)}
+  .map-frame iframe{width:100%;height:100%;min-height:440px;border:0}
+
+  /* Footer */
+  footer{background:var(--sea-deep);color:var(--ivory);padding:84px 0 40px;text-align:center}
+  footer .brand{justify-content:center;color:var(--ivory);font-size:1.8rem;margin-bottom:16px}
+  footer .brand .seal{color:var(--gold-soft)}
+  footer .f-tag{color:rgba(246,240,230,.7);font-family:var(--serif);font-style:italic;font-size:1.2rem;margin-bottom:28px}
+  .f-phone{font-family:var(--serif);font-size:2rem;color:var(--gold-soft)}
+  .f-meta{margin-top:30px;font-size:.78rem;color:rgba(246,240,230,.55);letter-spacing:.06em}
+  footer .goldline{margin:40px 0 28px;opacity:.3}
+
+  /* Reservation modal */
+  .res-overlay{position:fixed;inset:0;background:rgba(20,30,34,.5);backdrop-filter:blur(4px);z-index:90;opacity:0;pointer-events:none;transition:opacity .4s}
+  .res-overlay.open{opacity:1;pointer-events:auto}
+  .res-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-46%) scale(.96);z-index:100;background:var(--ivory);
+    width:min(460px,92vw);border-radius:6px;padding:48px 40px;opacity:0;pointer-events:none;transition:all .45s cubic-bezier(.7,0,.2,1);
+    box-shadow:0 30px 80px rgba(20,62,75,.3);max-height:92vh;overflow-y:auto}
+  .res-modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  .res-modal .eyebrow{display:block;margin-bottom:8px}
+  .res-modal h3{font-size:2rem;color:var(--sea);margin-bottom:24px}
+  .res-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:1.6rem;color:var(--muted);cursor:pointer}
+  .res-field{margin-bottom:18px}
+  .res-field label{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+  .res-field input,.res-field select{width:100%;background:#fff;border:1px solid var(--line);color:var(--ink);padding:13px 14px;
+    font-family:var(--sans);font-size:.95rem;border-radius:3px}
+  .res-field input:focus,.res-field select:focus{outline:none;border-color:var(--sea)}
+  .res-submit{width:100%;background:var(--sea);color:var(--ivory);border:none;padding:15px;font-family:var(--sans);
+    letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;border-radius:40px;cursor:pointer;margin-top:6px;transition:background .3s}
+  .res-submit:hover{background:var(--sea-deep)}
+  .res-or{text-align:center;color:var(--muted);margin:22px 0;font-size:.85rem}
+  .res-phone{display:block;text-align:center;font-family:var(--serif);font-size:1.5rem;color:var(--sea)}
+
+  /* Mobile menu */
+  .mobile-menu{position:fixed;inset:0;background:var(--ivory);z-index:80;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:28px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+  .mobile-menu.open{transform:translateY(0)}
+  .mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--ink)}
+  .mobile-menu .mclose{position:absolute;top:24px;right:30px;background:none;border:none;color:var(--ink);font-size:2rem}
+
+  @media(max-width:920px){
+    .nav-links{display:none}.nav-toggle{display:block}
+    .hero-grid,.story-grid,.menu-cols,.visit-grid{grid-template-columns:1fr;gap:44px}
+    .hero{padding-top:130px}
+    .hero-media img{height:420px}
+    .hero-media .badge{left:16px;bottom:-20px}
+    .stats-grid{grid-template-columns:1fr;gap:28px}
+    .stat:not(:last-child){border-right:none;border-bottom:1px solid var(--line);padding-bottom:28px}
+    .story-grid .clipwrap img{height:380px}
+    .pad{padding:88px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1!important;transform:none!important}
+    .clipimg{clip-path:none!important}
+    .hero-media img{transform:scale(1)!important}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="seal" viewBox="0 0 48 48">
+  <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <path fill="currentColor" d="M10 30h28l-2-13-6 5-6-8-6 8-6-5-2 13z"/>
+  <circle cx="14" cy="14" r="2.4" fill="currentColor"/><circle cx="24" cy="10" r="2.6" fill="currentColor"/><circle cx="34" cy="14" r="2.4" fill="currentColor"/>
+</symbol></defs></svg>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><svg class="seal"><use href="#seal"/></svg> Tomislav</a>
+    <nav class="nav-links">
+      <a href="#prica">Priča</a>
+      <a href="#jelovnik">Jelovnik</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#posjet">Posjeta</a>
+      <button class="btn-res" data-res>Rezerviraj stol</button>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Izbornik">☰</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mclose" id="mClose" aria-label="Zatvori">✕</button>
+  <a href="#prica">Priča</a>
+  <a href="#jelovnik">Jelovnik</a>
+  <a href="#galerija">Galerija</a>
+  <a href="#posjet">Posjeta</a>
+  <button class="btn-res" data-res>Rezerviraj stol</button>
+</div>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Vodice · Dalmacija · od 1979.</span>
+      <h1 class="reveal">Svjetlost<br>Jadrana na<br><em>tanjuru</em></h1>
+      <p class="reveal">Vedra mediteranska kuhinja s dušom kralja Tomislava — svježa riba, sunce u maslinovu ulju i dalmatinska tradicija nadohvat mora.</p>
+      <div class="hero-cta reveal">
+        <button class="btn-res" data-res>Rezerviraj stol</button>
+        <a href="#jelovnik" class="hero-ghost">Pogledaj jelovnik</a>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <div class="clip clipwrap"><img id="heroImg" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1400&q=80" alt="Svijetli mediteranski restoran uz more" /></div>
+      <div class="badge"><b>45+</b><small>Godina za stolom</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats pad">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b data-count="1979" data-plain="1">1979</b><small>Otkad kuhamo</small></div>
+    <div class="stat reveal"><b data-count="2400">0</b><small>Sretnih recenzija</small></div>
+    <div class="stat reveal"><b data-count="100" data-suffix="%">0</b><small>Lokalna riba</small></div>
+  </div>
+</section>
+
+<section class="pad" id="prica">
+  <div class="wrap story-grid">
+    <div class="clipwrap reveal-img"><img class="clipimg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80" alt="Svijetao mediteranski ugođaj i postavljen stol" /></div>
+    <div class="story-text reveal">
+      <span class="eyebrow">Naša priča</span>
+      <h2 class="big">Ponos imena,<br>toplina <em>mora</em></h2>
+      <p class="lead">Tomislav — prvi okrunjeni hrvatski kralj. Njegovo ime nosimo s dostojanstvom, a poslužujemo s mediteranskom toplinom.</p>
+      <p>Od 1979. naša obiteljska kuhinja diše u ritmu Vodica — ujutro miris kave i mora, navečer žar roštilja i smijeh za stolovima. Riba dolazi izravno s lokalnih brodica, povrće iz okolnih polja, a maslinovo ulje iz škrtih dalmatinskih maslinika.</p>
+      <p>Vjerujemo da dobar objed nije samo jelo, nego trenutak — sunce na koži, čaša domaćeg vina i okus koji pamtite dugo nakon ljeta.</p>
+      <div class="goldline-s" style="margin-top:8px"></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu pad" id="jelovnik">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Jelovnik</span>
+      <h2 class="big">Dalmacija na <em>stolu</em></h2>
+    </div>
+    <div class="menu-cols">
+      <div class="menu-cat reveal">
+        <h3>Za početak</h3><div class="goldline gl"></div>
+        <div class="dish"><div class="d-name">Pršut i sir s otoka</div><div class="d-desc">Domaći dalmatinski pršut, zreli ovčji sir, maslina i kapari.</div></div>
+        <div class="dish"><div class="d-name">Salata od hobotnice</div><div class="d-desc">Nježna hobotnica, mladi krumpir i svježe začinsko bilje u maslinovu ulju.</div></div>
+        <div class="dish"><div class="d-name">Dagnje na buzaru</div><div class="d-desc">Svježe dagnje u bijelom vinu, češnjaku i peršinu, uz domaći kruh.</div></div>
+        <div class="dish"><div class="d-name">Carpaccio od tune</div><div class="d-desc">Tanki listići svježe tune, limun, kapari i maslinovo ulje.</div></div>
+      </div>
+      <div class="menu-cat reveal">
+        <h3>S mora</h3><div class="goldline gl"></div>
+        <div class="dish"><div class="d-name">Riba s gradela</div><div class="d-desc">Svježa riba dana pečena na žaru, blitva na lešo i krumpir.</div></div>
+        <div class="dish"><div class="d-name">Brodet s palentom</div><div class="d-desc">Mješavina ribe i školjki u domaćem umaku uz kremastu palentu.</div></div>
+        <div class="dish"><div class="d-name">Crni rižoto</div><div class="d-desc">Rižoto s lignjama i sipinim crnilom, parmezan i kap ulja.</div></div>
+        <div class="dish"><div class="d-name">Škampi na buzaru</div><div class="d-desc">Jadranski škampi u umaku od rajčice, vina i češnjaka.</div></div>
+      </div>
+      <div class="menu-cat reveal">
+        <h3>S vatre i polja</h3><div class="goldline gl"></div>
+        <div class="dish"><div class="d-name">Pašticada s njokima</div><div class="d-desc">Govedina polako pirjana u prošeku i začinima, domaći njoki.</div></div>
+        <div class="dish"><div class="d-name">Janjetina ispod peke</div><div class="d-desc">Janjetina i krumpir pečeni pod pekom, po narudžbi unaprijed.</div></div>
+        <div class="dish"><div class="d-name">Biftek na žaru</div><div class="d-desc">Goveđi biftek s pečenim povrćem i umakom po izboru.</div></div>
+        <div class="dish"><div class="d-name">Miješano meso s roštilja</div><div class="d-desc">Odabir mesa s žara, domaći ajvar i sezonski prilozi.</div></div>
+      </div>
+      <div class="menu-cat reveal">
+        <h3>Slatki kraj</h3><div class="goldline gl"></div>
+        <div class="dish"><div class="d-name">Rožata</div><div class="d-desc">Dalmatinski krem-desert s karamelom i mirisom rožolina.</div></div>
+        <div class="dish"><div class="d-name">Fritule s prošekom</div><div class="d-desc">Domaće fritule sa suhim grožđem uz čašicu prošeka.</div></div>
+        <div class="dish"><div class="d-name">Smokve u medu</div><div class="d-desc">Sezonske smokve u domaćem medu s bademima i sladoledom.</div></div>
+      </div>
+    </div>
+    <p class="menu-note reveal">Jelovnik prati ulov i sezonu — rado preporučujemo jelo dana.</p>
+  </div>
+</section>
+
+<section class="pad" id="galerija">
+  <div class="wrap">
+    <div class="gal-head">
+      <div class="reveal">
+        <span class="eyebrow" style="display:block;margin-bottom:14px">Galerija</span>
+        <h2 class="big">Trenuci uz <em>more</em></h2>
+      </div>
+      <span class="drag-hint reveal">← Povucite za više →</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="gal-drag" id="galDrag">
+      <div class="gal-track" id="galTrack">
+        <figure><img src="https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=900&q=80" alt="Plodovi mora na žaru" /></figure>
+        <figure><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80" alt="Pečena riba s povrćem" /></figure>
+        <figure><img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=900&q=80" alt="Jadranska obala i more" /></figure>
+        <figure><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80" alt="Tjestenina s plodovima mora" /></figure>
+        <figure><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80" alt="Postavljen stol u svijetlom ugođaju" /></figure>
+        <figure><img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=900&q=80" alt="Čaša bijelog vina uz more" /></figure>
+        <figure><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Dalmatinski tanjur" /></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="posjet">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Posjeta</span>
+      <h2 class="big">Nađite nas u <em>Vodicama</em></h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-info reveal">
+        <div class="info-block">
+          <div class="lbl">Adresa</div>
+          <h3>Restoran Tomislav</h3>
+          <p>Vodice, Šibensko-kninska županija, Hrvatska</p>
+        </div>
+        <div class="info-block">
+          <div class="lbl">Radno vrijeme</div>
+          <div class="hours-row"><span>Ponedjeljak — Petak</span><b>12:00 — 23:00</b></div>
+          <div class="hours-row"><span>Subota — Nedjelja</span><b>11:00 — 24:00</b></div>
+          <div class="hours-row"><span>Sezona</span><b>svibanj — listopad</b></div>
+        </div>
+        <div class="info-block" style="border-bottom:none">
+          <div class="lbl">Rezervacije</div>
+          <p style="font-family:var(--serif);font-size:1.6rem;color:var(--sea)">+385 98 492 358</p>
+          <button class="btn-res" data-res style="margin-top:14px">Rezerviraj stol</button>
+        </div>
+      </div>
+      <div class="map-frame reveal">
+        <iframe src="https://maps.google.com/maps?q=Restoran+Tomislav+Vodice&output=embed" loading="lazy" title="Karta — Restoran Tomislav Vodice"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="brand"><svg class="seal" style="width:34px;height:34px"><use href="#seal"/></svg> Tomislav</a>
+    <p class="f-tag">Svjetlost Jadrana na tanjuru</p>
+    <a href="tel:+385984923 58" class="f-phone">+385 98 492 358</a>
+    <div class="goldline"></div>
+    <p class="f-meta">Vodice · Restorani i konobe · <a href="#posjet" style="color:var(--gold-soft)">Pronađite nas</a></p>
+    <p class="f-meta">© 2026 Restoran Tomislav · Sva prava pridržana</p>
+  </div>
+</footer>
+
+<div class="res-overlay" id="resOverlay"></div>
+<div class="res-modal" id="resModal" role="dialog" aria-modal="true">
+  <button class="res-close" id="resClose" aria-label="Zatvori">✕</button>
+  <span class="eyebrow">Rezervacija</span>
+  <h3>Vaš stol uz more</h3>
+  <form onsubmit="return false">
+    <div class="res-field"><label>Ime i prezime</label><input type="text" placeholder="Vaše ime" /></div>
+    <div class="res-field"><label>Datum</label><input type="date" /></div>
+    <div class="res-field"><label>Vrijeme</label><input type="time" /></div>
+    <div class="res-field"><label>Broj gostiju</label>
+      <select><option>2 osobe</option><option>3 osobe</option><option>4 osobe</option><option>5 osoba</option><option>6+ osoba</option></select>
+    </div>
+    <button class="res-submit">Pošalji upit</button>
+  </form>
+  <p class="res-or">— ili nazovite —</p>
+  <a href="tel:+385984923 58" class="res-phone">+385 98 492 358</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script>
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const header = document.getElementById('header');
+const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll); onScroll();
+
+const mm = document.getElementById('mobileMenu');
+document.getElementById('navToggle').onclick = () => mm.classList.add('open');
+document.getElementById('mClose').onclick = () => mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a => a.onclick = () => mm.classList.remove('open'));
+
+const ov = document.getElementById('resOverlay'), modal = document.getElementById('resModal');
+const openRes = () => { ov.classList.add('open'); modal.classList.add('open'); mm.classList.remove('open'); };
+const closeRes = () => { ov.classList.remove('open'); modal.classList.remove('open'); };
+document.querySelectorAll('[data-res]').forEach(b => b.onclick = openRes);
+document.getElementById('resClose').onclick = closeRes;
+ov.onclick = closeRes;
+
+if (!reduce) {
+  const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+  function raf(t){ lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // Hero media reveal + slow zoom
+  gsap.fromTo('#heroImg', { scale:1.2 }, { scale:1.02, duration:2.2, ease:'power2.out' });
+  gsap.utils.toArray('.hero-copy .reveal').forEach((el,i) => {
+    gsap.fromTo(el, { opacity:0, y:34 }, { opacity:1, y:0, duration:1, delay:.15*i, ease:'power3.out' });
+  });
+  gsap.fromTo('.hero-media', { opacity:0, y:34 }, { opacity:1, y:0, duration:1.1, delay:.2, ease:'power3.out' });
+
+  // Generic reveals
+  gsap.utils.toArray('.reveal').forEach(el => {
+    if (el.closest('.hero')) return;
+    gsap.fromTo(el, { opacity:0, y:36 }, {
+      opacity:1, y:0, duration:1, ease:'power3.out',
+      scrollTrigger:{ trigger:el, start:'top 88%' }
+    });
+  });
+
+  // Clip-path image reveals
+  gsap.utils.toArray('.clipimg').forEach(img => {
+    gsap.to(img, {
+      clipPath:'inset(0 0 0% 0)', duration:1.3, ease:'power4.out',
+      scrollTrigger:{ trigger:img, start:'top 85%' }
+    });
+  });
+  gsap.utils.toArray('.reveal-img').forEach(el => {
+    gsap.fromTo(el, { opacity:0 }, { opacity:1, duration:1, scrollTrigger:{ trigger:el, start:'top 88%' } });
+  });
+
+  // Count-up stats
+  gsap.utils.toArray('.stat b[data-count]').forEach(el => {
+    const end = +el.dataset.count, suffix = el.dataset.suffix || '', plain = el.dataset.plain;
+    ScrollTrigger.create({
+      trigger:el, start:'top 88%', once:true,
+      onEnter:() => {
+        const o = { v: plain ? end - 50 : 0 };
+        gsap.to(o, { v:end, duration:1.8, ease:'power2.out',
+          onUpdate:() => { el.textContent = Math.round(o.v).toLocaleString('hr-HR').replace(/\./g,'') + suffix; } });
+      }
+    });
+  });
+} else {
+  document.querySelectorAll('.reveal').forEach(el => { el.style.opacity=1; el.style.transform='none'; });
+  document.querySelectorAll('.clipimg').forEach(el => el.style.clipPath='none');
+  document.querySelectorAll('.stat b[data-count]').forEach(el => {
+    el.textContent = el.dataset.count + (el.dataset.suffix||''); });
+}
+
+// Horizontal draggable gallery (works regardless of reduced motion)
+(function(){
+  const drag = document.getElementById('galDrag'), track = document.getElementById('galTrack');
+  let isDown=false, startX=0, curX=0, lastX=0;
+  const maxScroll = () => Math.max(0, track.scrollWidth - drag.clientWidth);
+  const apply = () => { curX = Math.max(-maxScroll(), Math.min(0, curX)); track.style.transform = `translateX(${curX}px)`; };
+  drag.addEventListener('pointerdown', e => { isDown=true; startX=e.clientX; lastX=curX; drag.style.cursor='grabbing'; });
+  window.addEventListener('pointermove', e => { if(!isDown) return; curX = lastX + (e.clientX - startX); apply(); });
+  window.addEventListener('pointerup', () => { isDown=false; drag.style.cursor='grab'; });
+  drag.addEventListener('wheel', e => { if(Math.abs(e.deltaX) > Math.abs(e.deltaY)){ curX -= e.deltaX; apply(); e.preventDefault(); } }, {passive:false});
+  window.addEventListener('resize', apply);
+})();
+</script>
+</body>
+</html>
